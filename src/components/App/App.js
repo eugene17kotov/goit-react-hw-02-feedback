@@ -41,12 +41,16 @@ export class App extends Component {
     const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
     const positivePercentage = this.countPositiveFeedbackPercentage();
+    const options = Object.keys(this.state).reduce(
+      (acc, stateKey) => ({ ...acc, [stateKey]: stateKey }),
+      {}
+    );
 
     return (
       <Box p={4}>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            options={{ good: 'good', neutral: 'neutral', bad: 'bad' }}
+            options={options}
             onLeaveFeedback={this.changeFeedbackCount}
             onResetFeedback={this.resetFeedbackCount}
           ></FeedbackOptions>
